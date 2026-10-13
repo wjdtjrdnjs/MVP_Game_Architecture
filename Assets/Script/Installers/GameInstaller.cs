@@ -58,6 +58,10 @@ public class GameInstaller : MonoInstaller
             .FromComponentInHierarchy()
             .AsSingle();
 
+        //아이템 사용
+        Container.BindInterfacesAndSelfTo<ItemUsePresenter>()
+            .AsSingle();
+
     }
 }
  

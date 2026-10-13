@@ -29,6 +29,7 @@ public class PlayerPresenter : MonoBehaviour
 
         //플레이어 좌클릭 처리  
         playerView.Onclick
+            .Where(_=> !playerModel.IsDead)//죽어 있으면 공격 안함
             .Subscribe(worldPos =>
             {
 
@@ -54,6 +55,7 @@ public class PlayerPresenter : MonoBehaviour
 
         //플레이어 이동 처리
         playerView.Onmove
+           .Where(_ => !playerModel.IsDead) //죽어 있으면 이동 안 함
            .Subscribe(input => playerModel.PlayerMove(input))
             .AddTo(this);
 
@@ -63,14 +65,16 @@ public class PlayerPresenter : MonoBehaviour
            .AddTo(this);
 
         pickupRangeView.OnItemDetected
+            .Where(_=>!playerModel.IsDead) //죽어 있는 동안에 줍지 않음
             .Subscribe(collision =>
             {
                 DroppedItemView dropped = collision.GetComponent<DroppedItemView>();
-                if (dropped != null)
-                {
-                    inventoryModel.AddItem(dropped.Item);
-                    Destroy(dropped.gameObject);
-                }
+                if (dropped == null) return;
+
+                //가방에 들어갔을 때만 바닥 아이템 삭제
+                //가득 차면 AddItem이 false
+                if (inventoryModel.AddItem(dropped.Item)) 
+                    Destroy(dropped.gameObject);    
             })
             .AddTo(this);
 

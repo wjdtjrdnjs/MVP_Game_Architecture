@@ -41,4 +41,10 @@ public class PlayerModel : HealthModel
         rb.MovePosition(newpos);
     }
 
+    //리스폰용 순간이동
+    public void Teleport(Vector2 pos)
+    {
+        rb.position = pos; // 물리 위치
+        transform.position = pos; //같은 프레임에 화면 카메라로 바도 반영
+    }
 }

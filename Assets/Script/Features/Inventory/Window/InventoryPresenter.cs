@@ -42,9 +42,9 @@ public class InventoryPresenter : MonoBehaviour
             .Subscribe(open =>
             {
                 if (open) inventoryView.Show();
-                else 
-                { 
-                    inventoryView.Hide(); 
+                else
+                {
+                    inventoryView.Hide();
                     tooltip.Hide();
                 }
             })
@@ -53,6 +53,8 @@ public class InventoryPresenter : MonoBehaviour
         playerInputHandler.OnInteract
             .Subscribe(world => Debug.Log($"E: {world}"))
             .AddTo(this);
+
+        
     }
 
    

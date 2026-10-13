@@ -100,20 +100,32 @@ TextureImporter:
       name: HotBar_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 12
         y: 0
         width: 1760
         height: 878
       alignment: 9
-      pivot: {x: 0.36176664, y: 0.28810275}
+      pivot: {x: 0.6269722, y: 0.21607693}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: 322, y: -249}
+        - {x: 364, y: -249}
+        - {x: 364, y: -191}
+        - {x: 322, y: -191}
       physicsShape:
       - - {x: -725, y: -264}
         - {x: -43, y: -264}
         - {x: -43, y: -166}
         - {x: -725, y: -166}
+      - - {x: 326, y: -250}
+        - {x: 373, y: -250}
+        - {x: 373, y: -187}
+        - {x: 336, y: -187}
+      - - {x: 339, y: -225}
+        - {x: 349, y: -225}
+        - {x: 349, y: -225}
+        - {x: 339, y: -225}
       tessellationDetail: 0
       bones: []
       spriteID: 669ceeefef423bd4e8d37e7c16c982e1

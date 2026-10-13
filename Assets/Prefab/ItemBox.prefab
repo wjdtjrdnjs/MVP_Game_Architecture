@@ -10,8 +10,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 139755803092917144, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
       propertyPath: m_Name
-      value: Rock
+      value: ItemBox
       objectReference: {fileID: 0}
+    - target: {fileID: 139755803092917144, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582331007097327058, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 943232354, guid: 18352ecf75f44f84eb192ecd701985a2, type: 3}
     - target: {fileID: 2842359014867114144, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,6 +60,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7722354957554020737, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722354957554020737, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 8180636590421536426, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
       propertyPath: data
       value: 
@@ -59,5 +75,26 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 139755803092917144, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8394606675580056957}
   m_SourcePrefab: {fileID: 100100000, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
+--- !u!1 &2759772276253283128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 139755803092917144, guid: 63ef317c967c5c54284f19e2655b89ab, type: 3}
+  m_PrefabInstance: {fileID: 2863213400646437024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8394606675580056957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2759772276253283128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca60ff79b770c84ca879d2e16435c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChestView
+  capacity: 20

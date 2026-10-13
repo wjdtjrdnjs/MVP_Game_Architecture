@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 public class PlayerInstaller : MonoInstaller
@@ -44,5 +44,11 @@ public class PlayerInstaller : MonoInstaller
         Container.Bind<Transform>()
             .WithId("Player")
             .FromMethod(ctx => ctx.Container.Resolve<PlayerView>().transform);
+
+        //사망, 리스폰 처리
+        Container.BindInterfacesAndSelfTo<PlayerDeathPresenter>()
+            .FromComponentInHierarchy()
+            .AsSingle()
+            .NonLazy();
     }
 }

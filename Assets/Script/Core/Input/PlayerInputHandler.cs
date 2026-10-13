@@ -33,18 +33,25 @@ public class PlayerInputHandler : MonoBehaviour
     private readonly Subject<Unit> onCancel = new Subject<Unit> ();
     public IObservable<Unit> OnCancel => onCancel;
     public IObservable<Vector2> OnInteract => onInteract;
-  
-    
+
+    private readonly Subject<Unit> _onUse = new Subject<Unit>();
+    public IObservable<Unit> OnUse => _onUse;
 
 
+   
     void Update()
     {
         //사용자 좌클릭 조건문
         if (Input.GetMouseButtonDown(0))
         {
-           
             Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             onClickSubject.OnNext(worldPos);
+        }
+        // 우클릭 + UI 위 아님
+        if (Input.GetMouseButtonDown(1) && !IsPointerOverUI())
+        {
+            
+            _onUse.OnNext(Unit.Default); // 사용 신호 발생 
         }
 
         //인벤토리 활성화 
@@ -61,12 +68,7 @@ public class PlayerInputHandler : MonoBehaviour
             onInteract.OnNext(world);
         }        
         
-        ////아이템 추가
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    Debug.Log("InputHandler : 아이템 추가");
-        //    onInventorySubject.OnNext(Unit.Default);
-        //}
+       
 
         //플레이어 움직임
         Vector2 input = new Vector2(
@@ -94,13 +96,26 @@ public class PlayerInputHandler : MonoBehaviour
         for(int i = 0; i < 10; i++)
         {
             //Alpha1 - Alpha9 ->
-            KeyCode key = 1 == 9 ? KeyCode.Alpha0 : KeyCode.Alpha1 + 1;
+            KeyCode key = i == 9 ? KeyCode.Alpha0 : KeyCode.Alpha1 + 1;
             if (Input.GetKeyDown(key)) return i;
         }
         return -1; //안눌림
     }
+
+   
     public IObservable<int> HotbarScroll => Observable.EveryUpdate()
         .Select(_ => Input.mouseScrollDelta.y)
         .Where(y => y != 0)
         .Select(y => y > 0 ? -1 : 1);
+
+    private bool IsPointerOverUI()
+    {
+        return EventSystem.current != null
+            && EventSystem.current.IsPointerOverGameObject();
+    }
+
+    private void OnDestroy()
+    {
+        _onUse.Dispose();
+    }
 }

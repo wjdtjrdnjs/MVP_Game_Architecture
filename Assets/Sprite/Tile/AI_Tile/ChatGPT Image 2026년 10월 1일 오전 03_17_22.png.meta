@@ -51,7 +51,7 @@ TextureImporter:
   spritePixelsToUnits: 95
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 0
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -629,12 +629,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
-        y: 607
-        width: 99
+        y: 605
+        width: 100
         height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 1, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -651,12 +651,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 185
-        y: 607
+        y: 605
         width: 99
         height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 1, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -1134,10 +1134,10 @@ TextureImporter:
       name: "ChatGPT Image 2026\uB144 10\uC6D4 1\uC77C \uC624\uC804 03_17_22_47"
       rect:
         serializedVersion: 2
-        x: 1375
+        x: 1379
         y: 487
-        width: 99
-        height: 100
+        width: 98
+        height: 99
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

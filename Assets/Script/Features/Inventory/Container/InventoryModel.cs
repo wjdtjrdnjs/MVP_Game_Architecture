@@ -21,11 +21,30 @@ public class InventoryModel : IItemContainer
     }
 
 
-    public Item GetItem(int index) => items[index];
+    //범위 밖 번호면 null로 취급 -. 작은 상자를 큰 창으로 열어도 예외없음
+    public Item GetItem(int index) 
+        => (index >= 0 && index < items.Length) ? items[index] : null;
+
+    // index 칸의 아이템을 1개 소모
+    // 반환 true = 소모함 / false = 범위 밖이거나 빈 칸이라 먼저 막음
+    public bool ConsumOne(int index)
+    {
+        // 범위 밖 방어 (GetItem은 범위 검사가 없어서 여기서 먼저 텟카이)
+        if (index < 0 || index >= items.Length) return false;
+
+        //빈 칸이면 소모할게 없음
+        if (items[index] == null) return false;
+
+        //유일한 쓰기 통로로 비우기 -
+        SetItem(index, null);
+        return true;
+
+    }
 
     // 모든 배열 변경이 지나가는 유일한 통로
     public void SetItem(int index, Item item)
     {
+        if (index < 0 || index >= items.Length) return; //범위 밖은 무시 
         items[index] = item;
         _onSlotChanged.OnNext(index);
     }
