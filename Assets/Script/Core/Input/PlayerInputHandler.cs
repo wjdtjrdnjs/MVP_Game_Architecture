@@ -96,7 +96,7 @@ public class PlayerInputHandler : MonoBehaviour
         for(int i = 0; i < 10; i++)
         {
             //Alpha1 - Alpha9 ->
-            KeyCode key = i == 9 ? KeyCode.Alpha0 : KeyCode.Alpha1 + 1;
+            KeyCode key = i == 9 ? KeyCode.Alpha0 : KeyCode.Alpha1 + i;
             if (Input.GetKeyDown(key)) return i;
         }
         return -1; //안눌림

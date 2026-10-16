@@ -3,6 +3,8 @@ using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
+    [SerializeField] GameObject enemyPrefab; //Factory가 복제할 몬스터 프리팹
+
     public override void InstallBindings()
     {
         Container.Bind<InventoryModel>()
@@ -22,24 +24,7 @@ public class GameInstaller : MonoInstaller
         Container.Bind<Dragicon>()
            .FromComponentInHierarchy()
            .AsSingle();
-
-
-        Container.Bind<EnemyView>()
-           .FromComponentInHierarchy()
-           .AsSingle();
-
-        Container.Bind<EnemyModel>()
-           .FromComponentInHierarchy()
-           .AsSingle();
-
-        Container.Bind<EnemyPresenter>()
-           .FromComponentInHierarchy()
-           .AsSingle();
-
-
-        Container.Bind<EnemyBodyView>()
-           .FromComponentInHierarchy()
-           .AsSingle();
+        
 
         Container.Bind<HotbarView>()
             .FromComponentInHierarchy()
@@ -62,6 +47,8 @@ public class GameInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<ItemUsePresenter>()
             .AsSingle();
 
+        //몬스터 생성기: EnemyFactory.Create()->enemyPrefab 복제 -> 주입
+        Container.BindFactory<EnemyModel, EnemyFactory>().FromComponentInNewPrefab(enemyPrefab);
     }
 }
  

@@ -61,7 +61,7 @@ public class SlotPresenter : MonoBehaviour
         SlotView[] hotbarSlots = hotbarView.Slots;
         for (int i =0; i <  hotbarSlots.Length; i++)
             hotbarSlots[i].Initialize(ContainerType.Inventory, i);
-        Debug.Assert(hotbarSlots.Length == inventoryModel.Capacity,
+        Debug.Assert(hotbarSlots.Length <= inventoryModel.Capacity,
              $"핫바 칸 수 초과: View {hotbarSlots.Length}");
 
         //ChestWindow 안의 가방 칸 = 원래 가방과 같은 창고

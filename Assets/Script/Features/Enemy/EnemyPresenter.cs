@@ -18,11 +18,8 @@ public class EnemyPresenter : MonoBehaviour
         enemyModel.OnDead
             .Subscribe(_ =>
             {
-                Vector3 dropPosition = transform.position; // 삭제 전에 좌표 기억
 
-                DroppedItemView dropped = Instantiate(droppedItemPrefab, dropPosition, Quaternion.identity);
-                dropped.Setup(enemyModel.DropItem.ToItem());
-
+                DropItem(); //연결이 비어도 아래 Destroy은 반드시 실행
                 Debug.Log("몬스터 사망");
                 Destroy(gameObject);
             })
@@ -89,5 +86,19 @@ public class EnemyPresenter : MonoBehaviour
             Vector2 newPos = rb.position + direction * enemyModel.MoveSpeed * Time.deltaTime;
             rb.MovePosition(newPos);
         }
+    }
+
+    //드롭 프리팹과 드롭 아이템이 둘 다 연결돼 있을 때만 바닥에 떨어뜨린다
+    void DropItem()
+    {
+        if(droppedItemPrefab == null || enemyModel.DropItem == null)
+        {
+            // 두 번째 인자 this: Console에서 이 로그를 클릭하면 해당 몬스터가 선택됨
+            Debug.LogWarning($"{name}: 드롭 연결이 비어 있어 드롭을 건너뜀", this);
+            return;
+        }
+
+        DroppedItemView dropped = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity);
+        dropped.Setup(enemyModel.DropItem.ToItem());
     }
 }
